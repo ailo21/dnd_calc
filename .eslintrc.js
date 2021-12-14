@@ -56,6 +56,8 @@ module.exports = {
     'max-len': 0,
     'func-names': 0,
     'eol-last': 0,
+    'no-debugger': 0,
+    '@typescript-eslint/indent': 0,
     'spaced-comment': 0,
     'react/no-array-index-key': 0,
     'no-promise-executor-return': 0,

@@ -11,7 +11,7 @@ const Item : FC<ItemProps> = ({ text, index, partial }) => (
   <Draggable draggableId={ text } index={ index }>
     { (provided) => (
       <div
-        // onDoubleClick={ () => removeElement(partial) }
+        // onDoubleClick={ () => removeElement(components) }
         ref={ provided.innerRef }
         { ...provided.draggableProps }
         { ...provided.dragHandleProps }

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 const CalcDisplay:FC = () => (
-  <div>
+  <div className="calc_partial">
     CalcDisplay
   </div>
 );

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CalcNumbers = () => (
-  <div>
+  <div className="calc_partial">
     CalcNumbers
   </div>
 );

@@ -1,0 +1,65 @@
+.switcher_wrap {
+  display: flex;
+  justify-content: right;
+  margin: 30px 0;
+}
+.switcher_wrap .switcher {
+  background: #F3F4F6;
+  border-radius: 6px;
+  padding: 1px;
+  display: flex;
+  position: relative;
+}
+.switcher_border {
+  background-color: #fff;
+  border: 1px solid #E2E3E5;
+  border-radius: 6px;
+  width: 118px;
+  height: 36px;
+  position: absolute;
+  top: 1px;
+  z-index: 1;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.03, 1.1, 1, 1);
+  transition-delay: 0s;
+}
+.switcher_border.switcher_border_calc {
+  left: 1px;
+}
+.switcher_border.switcher_border_edit {
+  left: calc(50% + 1px);
+}
+button.mode {
+  background-color: transparent;
+  padding: 10px 10px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  width: 121px;
+  z-index: 2;
+}
+button.mode.active,
+button.mode:hover {
+  cursor: pointer;
+}
+button.mode:before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+button.mode span {
+  display: block;
+  margin-left: 5px;
+}
+.mode_right:before {
+  background-image: url('../../asset/icon/icon_see.svg');
+}
+.mode_left:before {
+  background-image: url('../../asset/icon/icon_code.svg');
+}
+/*# sourceMappingURL=Switcher.module.css.map */

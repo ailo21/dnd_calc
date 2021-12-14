@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CalcEqual = () => (
-  <div>
+  <div className="calc_partial">
     CalcEqual
   </div>
 );
