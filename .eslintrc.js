@@ -31,16 +31,8 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
-    // 'import/extensions': [
-    //   'error',
-    //   'ignorePackages',
-    //   {
-    //     'js': 'never',
-    //     'jsx': 'never',
-    //     'ts': 'never',
-    //     'tsx': 'never'
-    //   }
-    // ],
+    '@typescript-eslint/no-unused-vars': 0,
+    'no-restricted-syntax': 0,
     'react/jsx-props-no-spreading': 0,
     'import/no-named-as-default': 0,
     'linebreak-style': 0,
@@ -56,6 +48,7 @@ module.exports = {
     'max-len': 0,
     'func-names': 0,
     'eol-last': 0,
+    'react/jsx-no-useless-fragment': 0,
     'no-debugger': 0,
     '@typescript-eslint/indent': 0,
     'spaced-comment': 0,

@@ -5,6 +5,9 @@ export const store = configureStore({
   reducer: {
     calculator: calculatorReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 });
 
 export type AppDispatch = typeof store.dispatch;
