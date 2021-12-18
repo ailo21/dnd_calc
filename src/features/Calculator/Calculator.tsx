@@ -7,18 +7,17 @@ import {
   PropCalc, selectEditMode, selectStructure, toggleEditMode,
 } from './CalculatorSlice';
 import Switcher from '../../UI/switcher/Switcher';
-import { ColumnProps } from './model/CalcPartial';
-// import { CalcPartial } from './model/CalcPartial';
 
 const Calculator = () => {
   const dispatch = useAppDispatch();
-  const structure : PropCalc = useAppSelector(selectStructure);
-  const isEditMode : boolean = useAppSelector(selectEditMode);
+  const structure: PropCalc = useAppSelector(selectStructure);
+  const isEditMode: boolean = useAppSelector(selectEditMode);
 
   useEffect(() => {
+    console.log(structure);
   }, []);
 
-  const onDragEnd = ({ source, destination } : DropResult) => {
+  const onDragEnd = ({ source, destination }: DropResult) => {
     if (destination === undefined || destination === null) return null;
     if (source.droppableId === destination.droppableId && destination.index === source.index) {
       return null;
@@ -26,12 +25,24 @@ const Calculator = () => {
 
     const start = structure[source.droppableId];
     const end = Object.assign([], structure[destination.droppableId]);
-    if (end.id !== structure.arialTarget.id) {
+    if (start.id === structure.arialTarget.id) {
       //перемещения в калькуляторе
+      const newList = Object.assign([], end.list);
+      debugger;
+      const temp = newList.splice(source.index, 1)[0];
+      newList.splice(destination.index, 0, temp);
+
+      const newCol = {
+        id: end.id,
+        list: newList,
+      };
+      dispatch(changeStructure({
+        [end.id]: newCol,
+      } as PropCalc));
     } else {
       //пермещения из source в target
       const newStartList = start.list.filter(
-        (_ : any, idx : number) => idx !== source.index,
+        (_: any, idx: number) => idx !== source.index,
       );
 
       // Create a new start column

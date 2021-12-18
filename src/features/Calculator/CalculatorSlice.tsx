@@ -73,6 +73,14 @@ export const calculatorSlice = createSlice({
     toggleEditMode: (state) => {
       state.isEditMode = !state.isEditMode;
     },
+    deleteFromCalculator: (state, action: PayloadAction<number>) => {
+      const temElem: CalcPartial | undefined = state.structure.arialTarget.list.find((f) => f.sort === action.payload);
+      state.structure.arialTarget.list = state.structure.arialTarget.list.filter((f) => f.sort !== action.payload);
+      state.structure.arialSource.list.push(temElem!);
+      state.structure.arialSource.list.sort((o1, o2) => {
+        return (o1.sort < o2.sort) ? -1 : 0;
+      });
+    },
     computedResult: (state) => {
       let result: number = 0;
       const operand1 = state.display.operand1!;
@@ -105,6 +113,7 @@ export const calculatorSlice = createSlice({
 });
 export const {
   toggleEditMode,
+  deleteFromCalculator,
   computedResult,
   changeStructure,
 } = calculatorSlice.actions;
