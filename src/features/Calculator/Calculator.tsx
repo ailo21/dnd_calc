@@ -14,7 +14,7 @@ const Calculator = () => {
   const isEditMode: boolean = useAppSelector(selectEditMode);
 
   useEffect(() => {
-    console.log(structure);
+    // console.log(structure.arialSource.list.map((m)=>m.component.id));
   }, []);
 
   const onDragEnd = ({ source, destination }: DropResult) => {
@@ -26,9 +26,8 @@ const Calculator = () => {
     const start = structure[source.droppableId];
     const end = Object.assign([], structure[destination.droppableId]);
     if (start.id === structure.arialTarget.id) {
-      //перемещения в калькуляторе
+      //перемещения в калькуляторе(в пределах правого столбца)
       const newList = Object.assign([], end.list);
-      debugger;
       const temp = newList.splice(source.index, 1)[0];
       newList.splice(destination.index, 0, temp);
 

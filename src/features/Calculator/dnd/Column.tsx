@@ -26,7 +26,7 @@ const Column: FC<ColumnProps> = ({ col: { list, id } }) => {
             { ...provided.droppableProps }
           >
             { list?.map((partial, index) => (
-              <Item partial={ partial.component } key={ index } sort={ partial.sort } index={ index } />
+              <Item partial={ partial.component } key={ partial.sort } sort={ partial.sort } index={ index } />
             )) }
             { provided.placeholder }
             { showPlaceholder && <Placeholder active={ snapshot.isDraggingOver } /> }

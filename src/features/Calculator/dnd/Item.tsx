@@ -11,7 +11,7 @@ import {
 interface ItemProps {
   sort: number,
   index: number,
-  partial: JSX.Element
+  partial: JSX.Element,
 }
 
 const Item: FC<ItemProps> = ({ sort, index, partial }) => {
