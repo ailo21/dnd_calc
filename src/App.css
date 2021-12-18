@@ -81,4 +81,50 @@ body {
   outline: 1px solid #5D5FEF;
   cursor: pointer;
 }
+.calc_partial_equal button {
+  width: 100%;
+  height: 64px;
+  background-color: #5D5FEF;
+  color: #fff;
+  border-radius: 6px;
+  border: 0;
+}
+.calc_partial_equal button:hover,
+.calc_partial_equal button:active {
+  background-color: #1c1eba;
+}
+.calc_partial_display {
+  display: flex;
+}
+.calc_partial_display input {
+  width: 100%;
+  text-align: right;
+  padding: 0 10px;
+  font-size: 22px;
+  font-weight: bold;
+  background-color: #F3F4F6;
+  border-radius: 6px;
+  height: 52px;
+  border: 0;
+}
+.calc_partial_display input:hover,
+.calc_partial_display input:active,
+.calc_partial_display input:focus,
+.calc_partial_display input:focus-visible {
+  outline: none;
+}
+.mode.mode__constructor .drag_columns .calc_partial {
+  position: relative;
+}
+.mode.mode__constructor .drag_columns .calc_partial:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.mode.mode__calculator .calc_partial {
+  box-shadow: none;
+}
 /*# sourceMappingURL=App.css.map */

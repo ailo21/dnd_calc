@@ -36,28 +36,30 @@ body {
   justify-content: center;
   align-items: center;
 
-  &.placeholder_active{
+  &.placeholder_active {
     background-color: lightblue;
   }
 
   transition: 1s;
 
-  .placeholder_img{
+  .placeholder_img {
     text-align: center;
   }
-  .placeholder_text{
-    div{
+
+  .placeholder_text {
+    div {
       text-align: center;
     }
   }
 }
-.calc_partial{
+
+.calc_partial {
   background: #FFFFFF;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   padding: 4px;
-  margin-top:2px;
-  margin-bottom:2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
   margin-left: -4px;
   margin-right: -4px;
   min-height: 40px;
@@ -69,17 +71,20 @@ body {
   justify-content: space-between;
   margin-left: -5px;
   margin-right: -5px;
-  &.row_with_point{
-    .num:first-child{
+
+  &.row_with_point {
+    .num:first-child {
       flex: 0 0 154px;
 
     }
   }
 }
-.row+.row{
+
+.row + .row {
   margin-top: 8px;
 }
-.num,.operation_item {
+
+.num, .operation_item {
   background: #FFFFFF;
   border: 1px solid #E2E3E5;
   font-size: 14px;
@@ -87,10 +92,65 @@ body {
   margin: 0 4px;
   height: 48px;
   border-radius: 6px;
-  &:hover{
+
+  &:hover {
     border: 1px solid #5D5FEF;
     outline: 1px solid #5D5FEF;
     cursor: pointer;
   }
 
+}
+.calc_partial_equal{
+  button{
+    width: 100%;
+    height: 64px;
+    background-color: #5D5FEF;
+    color: #fff;
+    border-radius: 6px;
+    border: 0;
+    &:hover,&:active{
+      background-color: #1c1eba;
+    }
+  }
+}
+.calc_partial_display{
+  display: flex;
+  input{
+    width: 100%;
+    text-align: right;
+    padding: 0 10px;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #F3F4F6;
+    border-radius: 6px;
+    height: 52px;
+    border: 0;
+    &:hover,&:active,&:focus,&:focus-visible{
+      outline: none;
+    }
+  }
+}
+.mode {
+  &.mode__constructor {
+    .drag_columns {
+      .calc_partial {
+        position: relative;
+
+        &:before {
+          content: '';
+          position: absolute;
+          top:0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  &.mode__calculator {
+    .calc_partial{
+      box-shadow: none;
+    }
+  }
 }
