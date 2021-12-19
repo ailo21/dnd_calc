@@ -11,19 +11,19 @@ import { OperationEnum } from './model/OperationEnum';
 
 const ComponentList: CalcPartial[] = [
   {
-    sort: 1,
+    sort: 0,
     component: <CalcDisplay />,
   },
   {
-    sort: 2,
+    sort: 1,
     component: <CalcOperations />,
   },
   {
-    sort: 3,
+    sort: 2,
     component: <CalcNumbers />,
   },
   {
-    sort: 4,
+    sort: 3,
     component: <CalcEqual />,
   },
 ];
@@ -36,14 +36,12 @@ export interface CalculatorState {
 
 export interface PropCalcItem {
   id: string,
-  list: CalcPartial[]
+  list: CalcPartial[],
+  placeholder?: CalcPartial[],
 }
 
 export interface PropCalc {
-  [index: string]: any,
-
-  arialSource: PropCalcItem,
-  arialTarget: PropCalcItem,
+  [index: string]: PropCalcItem,
 }
 
 const initialState: CalculatorState = {
@@ -52,6 +50,7 @@ const initialState: CalculatorState = {
     arialSource: {
       id: 'arialSource',
       list: ComponentList,
+      placeholder: ComponentList,
     },
     arialTarget: {
       id: 'arialTarget',
@@ -108,10 +107,10 @@ export const calculatorSlice = createSlice({
       for (const [key] of Object.entries(action.payload)) {
         state.structure[key].list = action.payload[key].list;
       }
-      //обеспечим появление дисплея строго в первой позиции 1-- id компонента display
-      if (state.structure.arialTarget.list.some((s) => s.sort === 1)) {
-        if (state.structure.arialTarget.list[0].sort !== 1) {
-          const displayIndex = state.structure.arialTarget.list.findIndex(s => s.sort === 1);
+      //обеспечим появление дисплея строго в первой позиции 0-- id компонента displayCalc
+      if (state.structure.arialTarget.list.some((s) => s.sort === 0)) {
+        if (state.structure.arialTarget.list[0].sort !== 0) {
+          const displayIndex = state.structure.arialTarget.list.findIndex(s => s.sort === 0);
           const temp = state.structure.arialTarget.list.splice(displayIndex, 1)[0];
           state.structure.arialTarget.list.splice(0, 0, temp);
         }

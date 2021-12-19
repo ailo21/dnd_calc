@@ -26,7 +26,7 @@ const Item: FC<ItemProps> = ({ sort, index, partial }) => {
     dispatch(deleteFromCalculator(sort));
   };
   return (
-    <Draggable draggableId={ sort.toString() } index={ index }>
+    <Draggable draggableId={ sort.toString() } index={ index } isDragDisabled={!isPromMode}>
       { (provided) => (
         <div
           onDoubleClick={ () => removeElement(sort) }

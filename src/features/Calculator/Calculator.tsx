@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import Column from './dnd/Column';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   changeStructure,
-  PropCalc, selectEditMode, selectStructure, toggleEditMode,
+  PropCalc, PropCalcItem, selectEditMode, selectStructure, toggleEditMode,
 } from './CalculatorSlice';
 import Switcher from '../../UI/switcher/Switcher';
 
@@ -13,19 +13,12 @@ const Calculator = () => {
   const structure: PropCalc = useAppSelector(selectStructure);
   const isEditMode: boolean = useAppSelector(selectEditMode);
 
-  useEffect(() => {
-    // console.log(structure.arialSource.list.map((m)=>m.component.id));
-  }, []);
-
   const onDragEnd = ({ source, destination }: DropResult) => {
     if (destination === undefined || destination === null) return null;
-    if (source.droppableId === destination.droppableId && destination.index === source.index) {
-      return null;
-    }
+    if (source.droppableId === destination.droppableId && destination.index === source.index) return null;
 
-    const start = structure[source.droppableId];
     const end = Object.assign([], structure[destination.droppableId]);
-    if (start.id === structure.arialTarget.id) {
+    if (destination.droppableId === source.droppableId && source.droppableId === 'arialTarget') {
       //перемещения в калькуляторе(в пределах правого столбца)
       const newList = Object.assign([], end.list);
       const temp = newList.splice(source.index, 1)[0];
@@ -40,21 +33,16 @@ const Calculator = () => {
       } as PropCalc));
     } else {
       //пермещения из source в target
-      const newStartList = start.list.filter(
-        (_: any, idx: number) => idx !== source.index,
-      );
-
+      const compDragged = structure.arialSource.list.find(f => f.sort === Number(source.droppableId));
       // Create a new start column
       const newStartCol = {
-        id: start.id,
-        list: newStartList,
+        id: 'arialSource',
+        list: structure.arialSource.list.filter(f => f.sort !== compDragged!.sort),
       };
-
       // Make a new end list array
       const newEndList = Object.assign([], end.list);
-
       // Insert the item into the end list
-      newEndList.splice(destination.index, 0, start.list[source.index]);
+      newEndList.splice(destination.index, 0, compDragged!);
       const newEndCol = {
         id: end.id,
         list: newEndList,
@@ -64,12 +52,6 @@ const Calculator = () => {
         [newStartCol.id]: newStartCol,
         [newEndCol.id]: newEndCol,
       } as PropCalc));
-      // обеспечим появление дисплея строго в первой позиции
-      // if (newEndList.some((s : CalcPartial) => (s.component. === 'CalcDisplay'))) {
-      //   const displayIndex = newEndList.findIndex((f : CalcPartial) => f.elementCalc === 'CalcDisplay');
-      //   const temp = newEndList.splice(displayIndex, 1);
-      //   newEndList.splice(0, 0, temp[0]);
-      // }
     }
   };
   const changeMode = () => {
@@ -85,8 +67,29 @@ const Calculator = () => {
       />
       <DragDropContext onDragEnd={ onDragEnd }>
         <div className="drag_columns">
-          <Column col={ structure.arialSource } key={ structure.arialSource.id } />
-          <Column col={ structure.arialTarget } key={ structure.arialTarget.id } />
+          <div className="column_left">
+            {
+              structure.arialSource.placeholder?.map((pl, index) => {
+                const itemArea: PropCalcItem = {
+                  id: index.toString(),
+                  placeholder: [pl],
+                  list: [pl],
+                };
+                return <div className="placeholder_component_wrap">
+                  <div className="placeholder_component">
+                    { pl.component }
+                  </div>
+                  {
+                    structure.arialSource.list.some(s => s.sort === pl.sort)
+                    && <Column col={ itemArea } key={ index } />
+                  }
+                </div>;
+              })
+            }
+          </div>
+          <div className="column_right">
+            <Column col={ structure.arialTarget } key={ structure.arialTarget.id } />
+          </div>
         </div>
       </DragDropContext>
     </div>
