@@ -16,6 +16,7 @@ const Calculator = () => {
   const onDragEnd = ({ source, destination }: DropResult) => {
     if (destination === undefined || destination === null) return null;
     if (source.droppableId === destination.droppableId && destination.index === source.index) return null;
+    if (destination.droppableId !== 'arialTarget') return null;
 
     const end = Object.assign([], structure[destination.droppableId]);
     if (destination.droppableId === source.droppableId && source.droppableId === 'arialTarget') {
