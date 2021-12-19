@@ -108,6 +108,14 @@ export const calculatorSlice = createSlice({
       for (const [key] of Object.entries(action.payload)) {
         state.structure[key].list = action.payload[key].list;
       }
+      //обеспечим появление дисплея строго в первой позиции 1-- id компонента display
+      if (state.structure.arialTarget.list.some((s) => s.sort === 1)) {
+        if (state.structure.arialTarget.list[0].sort !== 1) {
+          const displayIndex = state.structure.arialTarget.list.findIndex(s => s.sort === 1);
+          const temp = state.structure.arialTarget.list.splice(displayIndex, 1)[0];
+          state.structure.arialTarget.list.splice(0, 0, temp);
+        }
+      }
     },
   },
 });
