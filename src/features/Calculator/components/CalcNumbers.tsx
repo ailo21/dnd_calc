@@ -57,7 +57,6 @@ const CalcNumbersList = () => {
         <CalcNumber num={ 0 } onClick={ () => clickHandlerNum(0) } />
         <CalcPoint onClick={ () => clickHandlerPoint() } />
       </div>
-
     </div>
   );
 };

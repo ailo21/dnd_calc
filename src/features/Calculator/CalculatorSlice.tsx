@@ -70,6 +70,7 @@ export const calculatorSlice = createSlice({
   initialState,
   reducers: {
     toggleEditMode: (state) => {
+      state.display = initialState.display;
       state.isEditMode = !state.isEditMode;
     },
     deleteFromCalculator: (state, action: PayloadAction<number>) => {
