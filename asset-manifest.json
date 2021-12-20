@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/dnd_calc/static/css/main.bcacc450.chunk.css",
-    "main.js": "/dnd_calc/static/js/main.88ea28e5.chunk.js",
-    "main.js.map": "/dnd_calc/static/js/main.88ea28e5.chunk.js.map",
+    "main.js": "/dnd_calc/static/js/main.1dc17105.chunk.js",
+    "main.js.map": "/dnd_calc/static/js/main.1dc17105.chunk.js.map",
     "runtime-main.js": "/dnd_calc/static/js/runtime-main.8ee39a74.js",
     "runtime-main.js.map": "/dnd_calc/static/js/runtime-main.8ee39a74.js.map",
     "static/js/2.94a98b53.chunk.js": "/dnd_calc/static/js/2.94a98b53.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.8ee39a74.js",
     "static/js/2.94a98b53.chunk.js",
     "static/css/main.bcacc450.chunk.css",
-    "static/js/main.88ea28e5.chunk.js"
+    "static/js/main.1dc17105.chunk.js"
   ]
 }
