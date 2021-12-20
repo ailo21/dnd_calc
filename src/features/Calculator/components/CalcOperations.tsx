@@ -1,16 +1,17 @@
 import React, { FC } from 'react';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { OperationEnum } from '../model/OperationEnum';
 import CalcOperation from './CalcOperation';
+import { addOperation, selectDisplayOperand1 } from '../CalculatorSlice';
 
 const CalcOperations : FC = () => {
   const dispatch = useAppDispatch();
-  // const operand1 = useAppSelector(selectDisplayOperand1);
+  const operand1 = useAppSelector(selectDisplayOperand1);
 
   const clickHandlerOperation = (operation : OperationEnum) => {
-    // if (operand1 !== undefined) {
-    //   dispatch(addOperation(operation));
-    // }
+    if (operand1 !== undefined) {
+      dispatch(addOperation(operation));
+    }
   };
   const operationList = [
     OperationEnum.fold,

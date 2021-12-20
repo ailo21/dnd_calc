@@ -80,6 +80,44 @@ export const calculatorSlice = createSlice({
         return (o1.sort < o2.sort) ? -1 : 0;
       });
     },
+    addOperand1: (state, action: PayloadAction<string>) => {
+      if (action.payload === '.' && state.display.operand1 === undefined) {
+        state.display.operand1 = '0.';
+      } else if (action.payload === '.' && state.display.operand1?.includes('.')) {
+
+      } else if (action.payload === '0' && state.display.operand1 === '0') {
+
+      } else {
+        state.display.operand1 = (state.display.operand1 === undefined || state.display.operand1 === '0')
+          ? action.payload
+          : `${ state.display.operand1 }${ action.payload }`;
+      }
+    },
+    addOperation: (state, action: PayloadAction<OperationEnum>) => {
+      if (state.display.compute !== undefined) {
+        state.display.operand1 = state.display.compute.toString();
+        state.display.operand2 = undefined;
+        state.display.isComputedRes = false;
+        state.display.compute = undefined;
+      }
+      state.display.operation = action.payload;
+    },
+    displayClear: (state) => {
+      state.display = initialState.display;
+    },
+    addOperand2: (state, action: PayloadAction<string>) => {
+      if (action.payload === '.' && state.display.operand2 === undefined) {
+        state.display.operand2 = '0.';
+      } else if (action.payload === '.' && state.display.operand2?.includes('.')) {
+
+      } else if (action.payload === '0' && state.display.operand2 === '0') {
+
+      } else {
+        state.display.operand2 = (state.display.operand2 === undefined || state.display.operand2 === '0')
+          ? action.payload
+          : `${ state.display.operand2 }${ action.payload }`;
+      }
+    },
     computedResult: (state) => {
       let result: number = 0;
       const operand1 = state.display.operand1!;
@@ -121,6 +159,10 @@ export const calculatorSlice = createSlice({
 export const {
   toggleEditMode,
   deleteFromCalculator,
+  addOperand1,
+  addOperation,
+  displayClear,
+  addOperand2,
   computedResult,
   changeStructure,
 } = calculatorSlice.actions;
@@ -128,6 +170,11 @@ export const {
 export const selectStructure = (state: RootState) => state.calculator.structure;
 export const selectEditMode = (state: RootState) => state.calculator.isEditMode;
 
+// calc
+export const selectDisplayOperand1 = (state: RootState) => state.calculator.display.operand1;
+export const selectDisplayOperand2 = (state: RootState) => state.calculator.display.operand2;
+export const selectDisplayOperation = (state: RootState) => state.calculator.display.operation;
+export const selectIsComputedRes = (state: RootState) => state.calculator.display.isComputedRes;
 export const selectDisplay = (state: RootState) => {
   let value: string;
   if (state.calculator.display.compute === undefined) {
